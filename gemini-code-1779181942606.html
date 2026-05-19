@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pickleball 30-Day Training & Nutrition Plan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1976d2; 
+            --primary-light: #e3f2fd;
+            --secondary: #0d47a1;
+            --success: #2e7d32;
+            --success-light: #e8f5e9;
+            --bg: #f4f7f9;
+            --text: #212529;
+            --border: #cfd8dc;
+            --youtube-red: #ff0000;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 180px; /* Adjusted offset for fixed elements */
+        }
+
+        body {
+            font-family: 'DM Mono', monospace;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding-bottom: 40px;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 1.3rem;
+            margin-bottom: 3px;
+            font-weight: 500;
+        }
+
+        header p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        /* MAIN TABS SYSTEM */
+        .main-tabs {
+            display: flex;
+            background: #fff;
+            position: sticky;
+            top: 61px;
+            z-index: 1000;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .tab-btn {
+            flex: 1;
+            background: none;
+            border: none;
+            padding: 12px;
+            font-family: 'DM Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #607d8b;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            background-color: var(--primary-light);
+        }
+
+        /* SUB NAV FOR ACTIVE TAB */
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            background: #fff;
+            padding: 10px;
+            overflow-x: auto;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 110px;
+            z-index: 999;
+        }
+
+        .nav-links a {
+            background: #eceff1;
+            color: #455a64;
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .container {
+            padding: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+
+        h2 {
+            font-size: 1.15rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+            border-left: 4px solid var(--primary);
+            padding-left: 8px;
+            font-weight: 500;
+        }
+
+        h2.nutrition-title {
+            color: var(--success);
+            border-left-color: var(--success);
+        }
+
+        .drill-section-header {
+            margin-top: 25px;
+            margin-bottom: 12px;
+            background: #f8f9fa;
+            padding: 8px;
+            border-radius: 6px;
+            border-left: 3px solid var(--secondary);
+        }
+
+        .nutrition-section-header {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            background: #f1f8e9;
+            padding: 8px;
+            border-radius: 6px;
+            border-left: 3px solid var(--success);
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--success);
+        }
+
+        .drill-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--secondary);
+        }
+
+        .drill-item, .bullet-item {
+            position: relative;
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+
+        .drill-item { padding-right: 75px; }
+
+        .drill-item::before, .bullet-item::before {
+            content: "➔";
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+            font-size: 0.8rem;
+            top: 2px;
+        }
+
+        .bullet-item::before {
+            color: var(--success);
+        }
+
+        .yt-btn {
+            background-color: white;
+            color: var(--youtube-red);
+            border: 1px solid var(--youtube-red);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.68rem;
+            font-weight: 500;
+            text-decoration: none;
+            position: absolute;
+            right: 0;
+            top: 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            font-family: 'DM Mono', monospace;
+        }
+
+        .coach-verdict {
+            background-color: #fff9c4;
+            color: #5d4037;
+            border: 1px solid #ffe082;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+
+        .badge {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            text-align: center;
+            border-radius: 50%;
+            font-weight: 500;
+            color: white;
+            font-size: 0.8rem;
+            margin-right: 3px;
+            text-decoration: none;
+        }
+        .badge-A { background-color: #78909c; }
+        .badge-B { background-color: #ff9800; }
+        .badge-C { background-color: #26a69a; }
+        .badge-D { background-color: #2196f3; }
+        .badge-E { background-color: #673ab7; }
+        .badge-M { background-color: #e53935; }
+
+        .table-responsive {
+            overflow-x: auto;
+            margin-top: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.82rem;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 10px 8px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+        }
+
+        th {
+            background-color: #eceff1;
+            font-weight: 500;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fcfdfe;
+        }
+
+        .code-row {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        .drill-desc, .food-desc {
+            display: block;
+            font-size: 0.78rem;
+            color: #546e7a;
+            margin-top: 2px;
+            line-height: 1.4;
+        }
+
+        .coach-note {
+            font-style: italic;
+            color: #546e7a;
+            font-size: 0.8rem;
+            margin-top: 8px;
+            background: #f1f3f5;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .coach-note-nutrition {
+            background: #f1f8e9;
+            color: #33691e;
+            border-left: 3px solid var(--success);
+        }
+
+        .alert-box {
+            background-color: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Pickleball Playbook</h1>
+        <p>30-Day Training & Fasting Guide</p>
+    </header>
+
+    <div class="main-tabs">
+        <button class="tab-btn active" onclick="switchTab('training')">🗓️ Training Plan</button>
+        <button class="tab-btn" onclick="switchTab('nutrition')">🥑 Nutrition Guide</button>
+    </div>
+
+    <div id="training" class="tab-content active">
+        <div class="nav-links">
+            <a href="#schedule">🗓️ 30-Day Plan</a>
+            <a href="#codes">🔤 Session Codes</a>
+            <a href="#details">📝 Drill Details</a>
+            <a href="#match-focus">🎯 Match Focus</a>
+        </div>
+
+        <div class="container">
+            <div class="card">
+                <h2>Coach's Verdict</h2>
+                <div class="coach-verdict">
+                    <strong>Verdict:</strong> The structure is approved, but the plan should prioritize cleaner pickleball fundamentals over extra exercise variety. The key upgrades are: serve consistency, return depth, ready-position reset, contact in front, soft hands, and controlled wall reps. [cite: 3]
+                </div>
+                <p style="font-size: 0.8rem; font-weight: 500; color: var(--secondary);">
+                    🎯 Goal After Day 30: Fewer unforced errors, faster recovery, consistent serves, and zero panic during point rallies. [cite: 81]
+                </p>
+            </div>
+
+            <div class="card" id="schedule">
+                <h2>🗓️ 30-Day Schedule</h2>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 15%">Day</th>
+                                <th style="width: 30%">Session</th>
+                                <th style="width: 55%">Coach Edit / Focus</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1 (Wed)</td><td><a href="#section-M" class="badge badge-M">M</a> 19.00</td><td>Ready position after every shot [cite: 7]</td></tr>
+                            <tr><td>2 (Thu)</td><td><a href="#section-A" class="badge badge-A">A</a></td><td>True recovery, not workout [cite: 7]</td></tr>
+                            <tr><td>3 (Fri)</td><td><a href="#section-M" class="badge badge-M">M</a> 19.00</td><td>Serve in, return deep [cite: 7]</td></tr>
+                            <tr><td>4 (Sat)</td><td><a href="#section-B" class="badge badge-B">B</a>+<a href="#section-C" class="badge badge-C">C</a> / <a href="#section-E" class="badge badge-E">E</a></td><td>Keep light. Save legs for Sunday [cite: 7]</td></tr>
+                            <tr><td>5 (Sun)</td><td><a href="#section-A" class="badge badge-A">A</a>+<a href="#section-M" class="badge badge-M">M</a> 17.00</td><td>Soft hands / fewer wild shots [cite: 7]</td></tr>
+                            <tr><td>6 (Mon)</td><td><a href="#section-A" class="badge badge-A">A</a></td><td>Recovery only [cite: 7]</td></tr>
+                            <tr><td>7 (Tue)</td><td><a href="#section-D" class="badge badge-D">D</a></td><td>TRX foundation strength [cite: 7]</td></tr>
+                            <tr><td>8 (Wed)</td><td><a href="#section-M" class="badge badge-M">M</a> 19.00</td><td>Split step before opponent hits [cite: 7]</td></tr>
+                            <tr><td>9 (Thu)</td><td><a href="#section-C" class="badge badge-C">C</a></td><td>Add serve mechanics (5-8 min) [cite: 7]</td></tr>
+                            <tr><td>10 (Fri)</td><td><a href="#section-M" class="badge badge-M">M</a> 19.00</td><td>Return with height and depth [cite: 7]</td></tr>
+                            <tr><td>11 (Sat)</td><td><a href="#section-D" class="badge badge-D">D</a> light+<a href="#section-E" class="badge badge-E">E</a></td><td>Wall drill only if body feels fresh [cite: 7]</td></tr>
+                            <tr><td>12 (Sun)</td><td><a href="#section-A" class="badge badge-A">A</a>+<a href="#section-M" class="badge badge-M">M</a> 17.00</td><td>Dink patience [cite: 7]</td></tr>
+                            <tr><td>13 (Mon)</td><td><a href="#section-A" class="badge badge-A">A</a></td><td>Recovery [cite: 7]</td></tr>
+                            <tr><td>14 (Tue)</td><td><a href="#section-B" class="badge badge-B">B</a></td><td>Footwork, but no jumping/HIIT [cite: 7]</td></tr>
+                            <tr><td>15 (Wed)</td><td><a href="#section-M" class="badge badge-M">M</a> 19.00</td><td>Hit, recover, reset ready position [cite: 7]</td></tr>
+                            <tr><td>16 (Thu)</td><td><a href="#section-D" class="badge badge-D">D</a></td><td>TRX strength, medium intensity [cite: 7]</td></tr>
+                            <tr><td>17 (Fri)</td><td><a href="#section-M" class="badge badge-M">M</a> 19.00</td><td>Reduce unforced errors [cite: 7]</td></tr>
+                            <tr><td>18 (Sat)</td><td><a href="#section-B" class="badge badge-B">B</a>+<a href="#section-E" class="badge badge-E">E</a></td><td>Controlled wall drill (Max 45 min) [cite: 7]</td></tr>
+                            <tr><td>19 (Sun)</td><td><a href="#section-A" class="badge badge-A">A</a>+<a href="#section-M" class="badge badge-M">M</a> 17.00</td><td>Placement over power [cite: 7]</td></tr>
+                            <tr><td>20 (Mon)</td><td><a href="#section-A" class="badge badge-A">A</a></td><td>Recovery [cite: 7]</td></tr>
+                            <tr><td>21 (Tue)</td><td><a href="#section-C" class="badge badge-C">C</a></td><td>Backhand + Dink + Serve focus [cite: 7]</td></tr>
+                            <tr><td>22 (Wed)</td><td><a href="#section-M" class="badge badge-M">M</a> 19.00</td><td>Choose safer shots [cite: 7]</td></tr>
+                            <tr><td>23 (Thu)</td><td><a href="#section-B" class="badge badge-B">B</a></td><td>Movement quality over speed [cite: 7]</td></tr>
+                            <tr><td>24 (Fri)</td><td><a href="#section-M" class="badge badge-M">M</a> 19.00</td><td>Soft grip, no overhit [cite: 7]</td></tr>
+                            <tr><td>25 (Sat)</td><td><a href="#section-D" class="badge badge-D">D</a> light+<a href="#section-C" class="badge badge-C">C</a> / <a href="#section-E" class="badge badge-E">E</a></td><td>Avoid fatigue before Sunday [cite: 7]</td></tr>
+                            <tr><td>26 (Sun)</td><td><a href="#section-A" class="badge badge-A">A</a>+<a href="#section-M" class="badge badge-M">M</a> 17.00</td><td>Game management [cite: 7]</td></tr>
+                            <tr><td>27 (Mon)</td><td><a href="#section-A" class="badge badge-A">A</a></td><td>Recovery [cite: 7]</td></tr>
+                            <tr><td>28 (Tue)</td><td><a href="#section-D" class="badge badge-D">D</a> light</td><td>Maintenance only [cite: 7]</td></tr>
+                            <tr><td>29 (Wed)</td><td><a href="#section-M" class="badge badge-M">M</a> 19.00</td><td>Consistency under pressure [cite: 7]</td></tr>
+                            <tr><td>30 (Thu)</td><td><a href="#section-C" class="badge badge-C">C</a> + Skill Test</td><td>Test skill, not fitness [cite: 7]</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card" id="codes">
+                <h2>🔤 Session Code Definitions</h2>
+                <div style="margin-top: 10px;">
+                    <div class="code-row"><span class="badge badge-A">A</span><div><strong>Recovery Mobility / Prehab:</strong> Easy mobility and joint prep. No fatigue. [cite: 5]</div></div>
+                    <div class="code-row"><span class="badge badge-B">B</span><div><strong>Footwork + Court Movement:</strong> Ready position, split step timing, kitchen movement. [cite: 5]</div></div>
+                    <div class="code-row"><span class="badge badge-C">C</span><div><strong>Paddle Skill + Serve/Touch:</strong> Sweet spot, soft hands, dink touch, and serve mechanics. [cite: 5]</div></div>
+                    <div class="code-row"><span class="badge badge-D">D</span><div><strong>TRX Strength:</strong> TRX-only support for legs, hips, back, core, calves. [cite: 5]</div></div>
+                    <div class="code-row"><span class="badge badge-E">E</span><div><strong>Controlled Wall Drill:</strong> Short controlled reps. Quality over quantity. [cite: 5]</div></div>
+                    <div class="code-row"><span class="badge badge-M">M</span><div><strong>Match Day with Focus:</strong> Real play plus professional warm-up/cooldown. [cite: 5]</div></div>
+                </div>
+            </div>
+
+            <div class="card" id="details">
+                <h2>📝 Drill Breakdown (With Guide Cues)</h2>
+                
+                <div class="drill-section-header" id="section-A"><span class="drill-title">A - Mobility & Prehab (20-30 min) [cite: 12]</span></div>
+                <ul>
+                    <li class="drill-item"><strong>Cat-cow (1 min)</strong><a href="https://www.youtube.com/results?search_query=Cat+cow+exercise+shorts" target="_blank" class="yt-btn">▶ Video</a><span class="drill-desc">On hands and knees: Alternate arching back high and dropping belly down low. [cite: 13]</span></li>
+                    <li class="drill-item"><strong>World's greatest stretch (1 min/side)</strong><a href="https://www.youtube.com/results?search_query=Worlds+greatest+stretch+shorts" target="_blank" class="yt-btn">▶ Video</a><span class="drill-desc">Deep lunge, hand on floor, rotate opposite chest/arm way up toward sky. [cite: 14]</span></li>
+                    <li class="drill-item"><strong>Hip flexor stretch + block (1 min/side)</strong><a href="https://www.youtube.com/results?search_query=Hip+flexor+stretch+yoga+block+shorts" target="_blank" class="yt-btn">▶ Video</a><span class="drill-desc">Kneel on one knee, lean hips slightly forward. Squeeze glute to protect lower back. [cite: 15]</span></li>
+                    <li class="drill-item"><strong>Hamstring stretch + strap (1 min/side)</strong><a href="https://www.youtube.com/results?search_query=Hamstring+stretch+with+strap+shorts" target="_blank" class="yt-btn">▶ Video</a><span class="drill-desc">Lay flat on back, loop strap around bottom of foot, raise leg up straight. [cite: 16]</span></li>
+                    <li class="drill-item"><strong>Ankle rocks (2 min)</strong><a href="https://www.youtube.com/results?search_query=Ankle+rocks+mobility+shorts" target="_blank" class="yt-btn">▶ Video</a><span class="drill-desc">Stand near wall, push knees forward over toes without letting heels leave floor. [cite: 17]</span></li>
+                    <li class="drill-item"><strong>Thoracic rotation (2 min)</strong><a href="https://www.youtube.com/results?search_query=Thoracic+rotation+stretch+shorts" target="_blank" class="yt-btn">▶ Video</a><span class="drill-desc">On hands and knees, place one hand behind head, rotate elbow up to the ceiling. [cite: 18]</span></li>
+                    <li class="drill-item"><strong>Band external rotation (2 x 12 reps)</strong><a href="https://www.youtube.com/results?search_query=Band+external+rotation+shorts" target="_blank" class="yt-btn">▶ Video</a><span class="drill-desc">Keep elbow tucked to your side, pull resistance band outwards away from body. [cite: 19]</span></li>
+                    <li class="drill-item"><strong>Scapular push-up (2 x 10 reps)</strong><a href="https://www.youtube.com/results?search_query=Scapular+push+up+shorts" target="_blank" class="yt-btn">▶ Video</a><span class="drill-desc">In a plank position, move upper back up/down by only moving shoulder blades. [cite: 20]</span></li>
+                    <li class="drill-item"><strong>Wrist flexor/extensor stretch (2 min)</strong><a href="https://www.youtube.com/results?search_query=Wrist+stretch+flexor+extensor+shorts" target="_blank" class="yt-btn">▶ Video</a><span class="drill-desc">Extend arm forward, use the other hand to gently pull fingers down and back. [cite: 21]</span></li>
+                </ul>
+                <div class="coach-note">Note: Keep this easy. Scale down to 15 mins total if legs feel heavy. [cite: 23]</div>
+
+                <div class="drill-section-header" id="section-B"><span class="drill-title">B - Court Footwork (30 min) [cite: 24]</span></div>
+                <ul>
+                    <li class="drill-item"><strong>Ready position reset (3 min)</strong><a href="https://www.youtube.com/results?search_query=pickleball+ready+position+shorts" target="_blank" class="yt-btn">▶ Video</a><span class="drill-desc">Knees slightly bent, weight on balls of feet, paddle held up dead center out front. [cite: 25]</span></li>
+                    <li class="drill-item"><strong>Split step timing (5 min)</strong><a href="https://www.youtube.com/results?search_query=pickleball+split+step+shorts" target="_blank" class="yt-btn">▶ Video</a><span class="drill-desc">A small structured hop landing softly on both feet just as opponent hits ball. [cite: 26]</span></li>
+                    <li class="drill-item"><strong>Side shuffle + stop balance (5 min)</strong><a href="https://www.youtube.com/results?search_query=pickleball+side+shuffle+shorts" target="_blank" class="yt-btn">▶ Video</a><span class="drill-desc">Shuffle side-to-side without crossing feet, stick landing with a balanced wide base. [cite: 27]</span></li>
+                    <li class="drill-item"><strong>Forward to kitchen + recover (6 min)</strong><a href="https://www.youtube.com/results?search_query=pickleball+kitchen+footwork+shorts" target="_blank" class="yt-btn">▶ Video</a><span class="drill-desc">Move up to kitchen line smoothly, tap line, shadow drop back keeping eyes up. [cite: 28]</span></li>
+                    <li class="drill-item"><strong>Backhand side movement (5 min)</strong><a href="https://www.youtube.com/results?search_query=pickleball+backhand+footwork+shorts" target="_blank" class="yt-btn">▶ Video</a><span class="drill-desc">Practice moving diagonally back and positioning body early for a deep backhand hit. [cite: 29]</span></li>
+                    <li class="drill-item"><strong>Single-leg balance + paddle hold (3 min)</strong><a href="https://www.youtube.com/results?search_query=single+leg+balance+exercise+shorts" target="_blank" class="yt-btn">▶ Video</a><span class="drill-desc">Balance on one leg while holding paddle ready. Simulates reflex recovery. [cite: 30]</span></li>
+                </ul>
+                <div class="coach-note">Note: Clean braking and redirection matter far more than lightning top speed. [cite: 32]</div>
+
+                <div class="drill-section-header" id="section-C"><span class="drill-title">C - Paddle Skills & Serve (30 min) [cite: 33]</span></div>
+                <ul>
+                    <li class="drill-item"><strong>Forehand/Backhand bounces (6 min)</strong><a href="https://www.youtube.com/results?search_query=pickleball+paddle+bounces+shorts" target="_blank" class="yt-btn">▶ Video</a><span class="drill-desc">Keep paddle face flat, track ball directly hitting sweet spot continuously. [cite: 34, 35]</span></li>
+                    <li class="drill-item"><strong>Soft hand catch-bounce (4 min)</strong><a href="https://www.youtube.com/results?search_query=pickleball+soft+hands+drill+shorts" target="_blank" class="yt-btn">▶ Video</a><span class="drill-desc">Bounce ball up, tilt paddle back slightly on drop to softly absorb ball weight. [cite: 37]</span></li>
+                    <li class="drill-item"><strong>Shadow dink strokes (5 min)</strong><a href="https://www.youtube.com/results?search_query=pickleball+dink+mechanics+shorts" target="_blank" class="yt-btn">▶ Video</a><span class="drill-desc">Practice the low-to-high smooth lifting motion of a dink trajectory. [cite: 38]</span></li>
+                    <li class="drill-item"><strong>Drop serve mechanics (6 min)</strong><a href="https://www.youtube.com/results?search_query=pickleball+drop+serve+shorts" target="_blank" class="yt-btn">▶ Video</a><span class="drill-desc">Drop ball without throwing, strike moving low-to-high, smooth follow-through. [cite: 39]</span></li>
+                </ul>
+
+                <div class="drill-section-header" id="section-D"><span class="drill-title">D - TRX Strength Routine (30 min) [cite: 42]</span></div>
+                <ul>
+                    <li class="drill-item"><strong>TRX Squat (3 x 12 reps)</strong><a href="https://www.youtube.com/results?search_query=TRX+squat+form+shorts" target="_blank" class="yt-btn">▶ Video</a><span class="drill-desc">Hold handles lightly, drop hips back and down, keep chest high, drive up through heels. [cite: 43]</span></li>
+                    <li class="drill-item"><strong>TRX Row (3 x 10 reps)</strong><a href="https://www.youtube.com/results?search_query=TRX+row+form+shorts" target="_blank" class="yt-btn">▶ Video</a><span class="drill-desc">Lean back straight, pull chest up toward handles, squeeze upper back shoulder blades. [cite: 44]</span></li>
+                    <li class="drill-item"><strong>TRX Reverse Lunge (2 x 8/side)</strong><a href="https://www.youtube.com/results?search_query=TRX+reverse+lunge+shorts" target="_blank" class="yt-btn">▶ Video</a><span class="drill-desc">Step leg backward dropping knee near floor, push up using forward leg. [cite: 45]</span></li>
+                    <li class="drill-item"><strong>TRX Hip Hinge (3 x 10 reps)</strong><a href="https://www.youtube.com/results?search_query=TRX+hip+hinge+shorts" target="_blank" class="yt-btn">▶ Video</a><span class="drill-desc">Push hips straight back while keeping legs mostly straight, loading hamstrings. [cite: 46]</span></li>
+                    <li class="drill-item"><strong>TRX Anti-Rotation Hold (2 x 25 sec)</strong><a href="https://www.youtube.com/results?search_query=TRX+anti+rotation+shorts" target="_blank" class="yt-btn">▶ Video</a><span class="drill-desc">Stand sideways to anchor, extend hands out straight, brace core tightly. [cite: 47]</span></li>
+                    <li class="drill-item"><strong>TRX Calf Raise (2 x 15 reps)</strong><a href="https://www.youtube.com/results?search_query=TRX+calf+raise+shorts" target="_blank" class="yt-btn">▶ Video</a><span class="drill-desc">Stand holding TRX for balance, explode onto tiptoes, lower down slowly. [cite: 48]</span></li>
+                </ul>
+
+                <div class="drill-section-header" id="section-E"><span class="drill-title">E - Controlled Wall Drill (30-40 min) [cite: 51]</span></div>
+                <ul>
+                    <li class="drill-item"><strong>Drop-hit control (10 min)</strong><a href="https://www.youtube.com/results?search_query=pickleball+wall+drop+hit+shorts" target="_blank" class="yt-btn">▶ Video</a><span class="drill-desc">Drop ball, strike smoothly into wall once, catch ball cleanly, reset setup. [cite: 53, 54]</span></li>
+                    <li class="drill-item"><strong>3-ball continuous rally (16 min)</strong><a href="https://www.youtube.com/results?search_query=pickleball+wall+drill+beginners+shorts" target="_blank" class="yt-btn">▶ Video</a><span class="drill-desc">Maintain 3 clean alternating baseline wall strikes without breaking form. [cite: 55, 56]</span></li>
+                    <li class="drill-item"><strong>Dink height control (6 min)</strong><a href="https://www.youtube.com/results?search_query=pickleball+wall+dink+shorts" target="_blank" class="yt-btn">▶ Video</a><span class="drill-desc">Stand close to wall, practice hitting small soft arcs below standard net level. [cite: 57]</span></li>
+                </ul>
+                <div class="coach-note">Note: Clean 3 balls beat 20 ugly balls. Stop rally if form breaks. [cite: 59]</div>
+
+                <div class="drill-section-header" id="section-M"><span class="drill-title">M - Match Day Guidelines [cite: 5]</span></div>
+                <p style="font-size: 0.8rem; color:#546e7a; padding: 0 5px;">โปรดดูเป้าหมายเกมการเล่นในส่วน "Match Focus Point" ด้านล่าง และทำความร้อนร่างกาย/ยืดเหยียดตามคำแนะนำ [cite: 5]</p>
+            </div>
+
+            <div class="card" id="match-focus">
+                <h2>🎯 Match Day Focus Points [cite: 8]</h2>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Day</th>
+                                <th>Focus</th>
+                                <th>Coaching Cue [cite: 9]</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>Wed [cite: 9]</strong></td><td>Reset position [cite: 9]</td><td>Paddle back to front and feet to ready after every single shot. [cite: 9]</td></tr>
+                            <tr><td><strong>Fri [cite: 9]</strong></td><td>Consistency [cite: 9]</td><td>Target 80% serves in. Return high and deep. Avoid fancy shots. [cite: 9]</td></tr>
+                            <tr><td><strong>Sun [cite: 9]</strong></td><td>Control [cite: 9]</td><td>Control pace, dink or block when rushed. Make them hit one more. [cite: 9]</td></tr>
+                            <tr><td><strong>Sat [cite: 9]</strong></td><td>Relaxation [cite: 9]</td><td>No power focus. Stay relaxed. If playing 3 days in a row, skip wall drill. [cite: 9]</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="nutrition" class="tab-content">
+        <div class="nav-links">
+            <a href="#nutri-summary">📋 Summary</a>
+            <a href="#nutri-timing">⏰ Meal Timing</a>
+            <a href="#nutri-menu">🍜 Thai Menus</a>
+            <a href="#nutri-hydra">💧 Hydration</a>
+        </div>
+
+        <div class="container">
+            <div class="card" id="nutri-summary">
+                <h2 class="nutrition-title">📋 Fasting + Pickleball Summary</h2>
+                <div class="coach-verdict" style="background-color: #f1f8e9; color: #33691e; border-color: #c5e1a5;">
+                    <strong>Coach Summary:</strong> ทำ Fasting ช่วง 20:00 - 12:00 ได้ตามปกติเพื่อคุมไขมัน แต่ห้ามปล่อยให้พลังงานหมด (Under-fuel) ก่อนลงแข่งช่วงเย็นเด็ดขาด [cite: 83, 85] พิกเกิลบอลเป็นกีฬาที่ต้องระเบิดแรงและใช้กล้ามเนื้อหนัก หากร่างกายขาดพลังงาน จะทำให้เคลื่อนไหวช้า ตีพลาด และเสี่ยงบาดเจ็บ [cite: 86]
+                </div>
+                
+                <div class="nutrition-section-header">กฎเหล็ก 5 ข้อเพื่อลดไขมันโดยไม่เสียพละกำลัง [cite: 182]</div>
+                <ul>
+                    <li class="bullet-item">กินโปรตีนในทุกๆ มื้อ เพื่อช่วยฟื้นฟูกล้ามเนื้อและให้อิ่มท้อง [cite: 90, 183]</li>
+                    <li class="bullet-item">ใช้คาร์โบไฮเดรตอย่างมีกลยุทธ์รอบๆ เวลาเล่น ห้ามอดแป้งในวันแข่ง [cite: 91, 185]</li>
+                    <li class="bullet-item">เน้นผักใบเขียวเพื่อให้รู้สึกอิ่มและได้วิตามิน [cite: 92, 186]</li>
+                    <li class="bullet-item">หลีกเลี่ยงของทอด น้ำหวาน ขนมเบเกอรี่ [cite: 93, 187]</li>
+                    <li class="bullet-item">ห้ามใช้การทำ Fasting เป็นข้ออ้างในการกินมื้อใหญ่ยักษ์ทีเดียว [cite: 94, 189]</li>
+                </ul>
+            </div>
+
+            <div class="card" id="nutri-timing">
+                <h2 class="nutrition-title">⏰ Daily Timing Structure</h2>
+                <p style="font-size: 0.8rem; color:#546e7a; margin-bottom: 10px;">โครงสร้างการกินสำหรับวันที่มีแข่งรอบ 19:00 น. [cite: 88, 111]</p>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 25%">เวลา</th>
+                                <th style="width: 30%">วัตถุประสงค์ [cite: 88]</th>
+                                <th style="width: 45%">สารอาหารหลัก [cite: 88]</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>12:00 [cite: 88]</strong></td><td>Break Fast (มื้อแรก) [cite: 88]</td><td>โปรตีนสูง + ผัก + คาร์โบไฮเดรตที่ควบคุมปริมาณ [cite: 88]</td></tr>
+                            <tr><td><strong>15:30-16:30 [cite: 88]</strong></td><td>Stability Meal (มื้อหลัก/ว่าง) [cite: 88]</td><td>โปรตีน + ผลไม้ หรือแป้งเชิงซ้อน (ไม่มันจัด) [cite: 88]</td></tr>
+                            <tr><td><strong>17:30-18:15 [cite: 88]</strong></td><td>Pre-Play Snack (เติมพลัง) [cite: 88]</td><td>คาร์บย่อยง่าย + โปรตีนเล็กน้อย (ไขมัน/ไฟเบอร์ต่ำ) [cite: 88]</td></tr>
+                            <tr><td><strong>หลังเล่นเสร็จ [cite: 88]</strong></td><td>Recovery (ฟื้นฟู) [cite: 88]</td><td>เคร่งครัด: น้ำ+เกลือแร่ / ยืดหยุ่น: โปรตีนย่อยง่าย [cite: 88]</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="coach-note coach-note-nutrition">
+                    <strong>คำแนะนำกรณีแข่งรอบดึก (19:00):</strong> ถ้าปิด Fasting ตอน 20:00 จะขาดมื้อฟื้นฟูหลังแข่ง [cite: 121, 122] โค้ดแนะนำให้เลือก <strong>Option C (เลื่อนเวลากินเป็น 12:30-20:30 หรือ 13:00-21:00)</strong> ในวันแข่งหนัก หรือผ่อนปรนให้กินโปรตีน/โยเกิร์ตหลังแข่งได้ 30-60 นาทีครับ [cite: 127, 129]
+                </div>
+            </div>
+
+            <div class="card" id="nutri-menu">
+                <h2 class="nutrition-title">🍜 เมนูอาหารไทยและอาหารคลีนแนะนำ</h2>
+                
+                <div class="nutrition-section-header">12:00 - มื้อแรกเปิด Fast (Break Fast) [cite: 98]</div>
+                <ul>
+                    <li class="bullet-item"><strong>อาหารไทยคลีน:</strong> ไก่ย่าง, ปลานึ่ง, หรือหมูเนื้อแดงไม่ติดมัน + ข้าวสวย 0.5-1 กำปั้น + ผักเคียง + แกงจืดน้ำใส [cite: 99]</li>
+                    <li class="bullet-item"><strong>ข้าวหน้าไข่ต้ม/ตุ๋น:</strong> ไข่ต้ม 2 ฟองบวกไข่ขาวเพิ่ม + ข้าวสวย + แตงกวา/มะเขือเทศ (เพิ่มทูน่า/ไก่ได้) [cite: 100, 101]</li>
+                    <li class="bullet-item"><strong>ก๋วยเตี๋ยวน้ำใส:</strong> เส้นหมี่น้ำใสใส่ไก่ฉีก, เนื้อปลา หรือไข่ + ผักเยอะๆ (สั่งไม่เจียวกระเทียม ไม่ใส่น้ำมันเพิ่ม) [cite: 103]</li>
+                    <li class="bullet-item"><strong>Yogurt Bowl:</strong> กรีกโยเกิร์ตโปรตีนสูง + กล้วยหอม/ผลไม้ตระกูลเบอร์รี่ + โอ๊ตหรือกราโนล่าเล็กน้อย [cite: 102]</li>
+                </ul>
+                <div class="alert-box">⚠️ ห้ามเปิด Fast ด้วยขนมอบเบเกอรี่, กาแฟใส่นมหวานจัด หรือของทอดเด็ดขาด เพราะจะหมดพลังงานไวและหิวโซระหว่างวัน [cite: 104, 105]</div>
+
+                <div class="nutrition-section-header">15:30-16:30 - มื้อกลางวันหรือของว่างหนัก [cite: 106]</div>
+                <ul>
+                    <li class="bullet-item"><strong>ข้าวมันไก่ (สูตรคุมแคล):</strong> เลือกเนื้ออกไม่เอาหนัง, ข้าวครึ่งจาน, น้ำซุปจิบเล็กน้อย, คุมปริมาณน้ำจิ้ม [cite: 107]</li>
+                    <li class="bullet-item"><strong>แซนด์วิชทูน่า/ไก่:</strong> ใช้ขนมปังโฮลวีต + ทูน่า/อกไก่/ไข่ต้ม + ผัก + มายองเนสสูตรไขมันต่ำ [cite: 108]</li>
+                    <li class="bullet-item"><strong>ข้าวกล่องโปรตีน:</strong> ข้าวสวย 0.5-1 กำปั้น + อกไก่/ปลา/เต้าหู้ผัดน้ำมันน้อย + ผัก + ผลไม้ชิ้นเล็ก [cite: 109]</li>
+                </ul>
+
+                <div class="nutrition-section-header">17:30-18:15 - ของว่างเติมพลังก่อนแข่ง 19:00 (Pre-Play) [cite: 111]</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.8rem; margin-top: 5px;">
+                    <div>• กล้วยหอม + กรีกโยเกิร์ต [cite: 112]</div>
+                    <div>• นมถั่วเหลืองหวานน้อย + กล้วย [cite: 113]</div>
+                    <div>• กล้วยหอม + ไข่ต้ม 1 ฟอง [cite: 114]</div>
+                    <div>• ขนมปังปิ้งทาเนยถั่วบางๆ [cite: 115]</div>
+                    <div>• ข้าวปั้นสามเหลี่ยม / โอนิกิริ [cite: 117]</div>
+                    <div>• โยเกิร์ตโปรตีน + ผลไม้ [cite: 118]</div>
+                </div>
+                <div class="alert-box" style="background-color: #fff3e0; color: #e65100; border-color: #ffe0b2;">🚫 สิ่งที่ควรเลี่ยงก่อนแข่ง: ของเผ็ดจัด, ของทอด, ชานมไข่มุก, สลัดจานยักษ์ (ไฟเบอร์จุก), ถั่วปริมาณมาก หรือเนื้อสัตว์ย่อยยาก [cite: 120]</div>
+            </div>
+
+            <div class="card" id="nutri-hydra">
+                <h2 class="nutrition-title">💧 การเติมน้ำและเกลือแร่ (Hydration) [cite: 175]</h2>
+                <ul>
+                    <li class="bullet-item"><strong>ช่วง Fasting:</strong> ดื่มน้ำเปล่าได้ตามปกติ การถือศีลอดอาหารไม่ได้หมายความว่าห้ามดื่มน้ำ [cite: 176] ตั้งเป้าให้ปัสสาวะเป็นสีเหลืองอ่อน [cite: 177]</li>
+                    <li class="bullet-item"><strong>ก่อนแข่ง 1-2 ชั่วโมง:</strong> ดื่มน้ำประมาณ 500 มิลลิลิตร [cite: 178]</li>
+                    <li class="bullet-item"><strong>ระหว่างแข่ง:</strong> จิบน้า 150-250 มิลลิลิตร ทุกๆ 15-20 นาที [cite: 179]</li>
+                    <li class="bullet-item"><strong>เมื่อไหร่ที่ต้องกินเกลือแร่ (Electrolyte):</strong> เมื่อเล่นเกิน 60 นาที, เหงื่อออกมากจนเสื้อเปียกโชก หรือเริ่มมีอาการตะคริว [cite: 180, 181] หลีกเลี่ยงสปอร์ตดริ้งค์ที่น้ำตาลสูงถ้ารอบนั้นไม่ได้เล่นหนักมาก [cite: 181]</li>
+                </ul>
+                
+                <div style="font-size: 0.7rem; color: #78909c; margin-top: 15px; border-top: 1px dashed var(--border); padding-top: 10px;">
+                    *หมายเหตุเพื่อความปลอดภัย: นี่คือคำแนะนำด้านโภชนาการการกีฬาเบื้องต้น หากคุณมีโรคประจำตัว เช่น เบาหวาน โรคไต ความดันโลหิต หรือทานยาประจำ ควรปรึกษาแพทย์ก่อนปรับเวลาอาหาร [cite: 196, 197]
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Show current tab & set button active
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+            
+            // Scroll to top of window smoothly when changing main tabs
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
